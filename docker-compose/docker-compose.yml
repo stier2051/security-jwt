@@ -2,7 +2,7 @@ version: '3'
 
 services:
 
-  postgres-db-secu:
+  postgres-db-security:
     image: postgres:12-alpine
     volumes:
       - ./postgres:/docker-entrypoint-initdb.d
