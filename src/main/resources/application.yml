@@ -14,3 +14,7 @@ spring:
       database: postgresql
       database-platform: org.hibernate.dialect.PostgreSQLDialect
 
+springdoc:
+  swagger-ui:
+    enabled: true
+

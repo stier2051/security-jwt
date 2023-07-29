@@ -6,4 +6,6 @@
 ```
 mvn clean install
 
-docker-compose -f ./docker-compose/docker-compose.yml -p kks-bpm-platform up -d
+2) Up database
+
+docker-compose -f ./docker-compose/docker-compose.yml up -d
