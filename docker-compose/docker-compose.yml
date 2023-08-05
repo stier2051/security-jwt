@@ -12,3 +12,9 @@ services:
       POSTGRES_MULTIPLE_DATABASES: "security"
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: 123456
+
+  auth-service:
+    image: security-jwt/application
+    restart: always
+    ports:
+      - 8080:8080
