@@ -5,6 +5,7 @@ name: Maven Package
 
 on:
   pull_request:
+    branches:
     - dev
 jobs:
   build:
