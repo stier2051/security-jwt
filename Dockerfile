@@ -14,5 +14,5 @@ RUN true
 COPY --from=builder spring-boot-loader/ ./
 RUN true
 COPY --from=builder application/ ./
-ENTRYPOINT ["java", "-jar", "application.jar"]
+ENTRYPOINT ["java", "-jar", "/application.jar"]
 
