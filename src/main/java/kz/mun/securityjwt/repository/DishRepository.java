@@ -9,5 +9,6 @@ import java.util.Optional;
 @Repository
 public interface DishRepository extends JpaRepository<Dish, Long> {
 
+    Boolean existsDishByName(String name);
     Boolean existsDishByCookingTime(String cookingTime);
 }
