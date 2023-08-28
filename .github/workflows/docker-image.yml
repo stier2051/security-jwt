@@ -4,11 +4,19 @@ on:
   push:
     branches: [ "dev" ]
 
+env:
+  REGISTRY: ghcr.io
+  IMAGE_NAME: ${{ security-jwt.repository }}
+
 jobs:
 
   build:
 
     runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
 
     steps:
     - uses: actions/checkout@v3
@@ -18,9 +26,15 @@ jobs:
         java-version: '17'
         distribution: 'corretto'
         cache: maven
+
     - name: Build with Maven
       run: mvn -B package --file pom.xml clean install -DskipTests
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
+#    - name: Build the Docker image
+#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
 
+    - name: Build and push Docker image
+      run: |
+        echo $CR_PAT | docker login ghcr.io -u stier2051 -p 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
+        docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        docker push ghcr.io/stier2051/security-jwt:latest
