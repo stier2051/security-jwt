@@ -26,11 +26,10 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml clean install -DskipTests
 
-#    - name: Build the Docker image
-#      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-
     - name: Build and push Docker image
+      env:
+        CR_PAT: ${{ secrets.GHCR_PAT }}
       run: |
-        echo $CR_PAT | docker login ghcr.io -u stier2051 -p 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
+        echo $CR_PAT | docker login ghcr.io -u stier2051 --password-stdin
         docker build . --file Dockerfile --tag my-image-name:$(date +%s)
-        docker push ghcr.io/stier2051/security-jwt:latest
+        docker push ghcr.io/stier2051/security-jwt:TAG
